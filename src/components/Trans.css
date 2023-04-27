@@ -1,0 +1,24 @@
+.ou {
+    background: #F0DBDB;
+  }
+.ji {
+background: #F7EFE5;
+}
+.ant-table-thead > tr >th{
+
+    background: #863A6F !important;
+    color:yellow !important;
+    font-size: medium;
+
+}
+.ant-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+}
+.zpd {
+  white-space: pre-wrap;
+}
+.dxd {
+  visibility: hidden;
+}
