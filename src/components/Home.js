@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import { Button, Space, Form, Input,Spin,notification } from 'antd';
 import api from '../api/axiosConfig'
-import Counter from './Counter';
+// import Counter from './Counter';
 const openNotificationWithIcon = (type, message, description) => notification[type]({message, description});
 
 const { TextArea } = Input;
 
 function Home() {
-
+    let request={inputFolder:'',outputFolder:''}
     const [inputname, setInput] = useState("");
     const [outputname, setOutput] = useState("");
     const [back, setback] = useState("");
@@ -19,12 +19,15 @@ function Home() {
             openNotificationWithIcon('error', 'empty is not allow', `input the folder name to box`);
         } else {
             setback('');
-            const zparam=inputname + '+' + outputname;
+            // const zparam=inputname + '+' + outputname;
+            request.inputFolder=inputname
+            request.outputFolder=outputname
             try
             {
                 setFetch(true);
                 setDisabledInput(true)
-                const res = await api.get(`/api/goals/trans/${zparam}`);
+                // const res = await api.get(`/api/goals/trans/${zparam}`);
+                const res = await api.post('/api/goals/trans',request);
                 setback(res.data)
                 setFetch(false)
                 setDisabledInput(false)

@@ -83,10 +83,10 @@ function Trans() {
                 <Container>
                     {goals.length !== undefined ? 
                     <Avatar
-                        style={{backgroundColor:'#f56a00',marginRight:'5px'}}
+                        style={{backgroundColor:'#f56a00',marginRight:'5px',fontSize:'12px'}}
                         size='large'>{goals.length}</Avatar> : null
                     }
-                <Button onClick={openAddGoalModal} type='primary'>Add New Goal +</Button>
+                <Button onClick={openAddGoalModal} type='primary' style={{fontSize:'12px'}}>Add New Goal +</Button>
                 </Container>
             </div>
 
@@ -192,30 +192,33 @@ function Trans() {
                 title:'keyword',
                 dataIndex:'keyword',
                 width: 100,
-                key:'keyword'
+                key:'keyword',
+                className:'laoyaoziling',
                 },
                 {
                 title:'operation',
                 dataIndex:'operation',
                 width: 60,
+                className:'laoyaoziling',
                 key:'operation'
                 },
                 {
                 title:'before change',
-                className:'zpd',
+                className:'zpd laoyaoziling',
                 dataIndex:'preChange',
-                width:200,
+                width:260,
                 key:'preChange'
                 },
                 {
                 title:'after change',
-                className:'zpd',
+                className:'zpd laoyaoziling',
                 dataIndex:'postChange',
-                width:350,
+                width:330,
                 key:'postChange'
                 },
                 {
                 title:'author',
+                className:'laoyaoziling',
                 dataIndex:'author',
                 width:60,
                 key:'author'
@@ -223,12 +226,14 @@ function Trans() {
                 {
                 title:'change date',
                 dataIndex:'updateDate',
+                className:'laoyaoziling',
                 width:120,
                 render: formatterTime,
                 key:'updateDate'
                 },
                 {
                   title: 'Action',
+                  className:'laoyaoziling',
                   key: 'action',
                   render: (text, record) => (
                     <Fragment>
@@ -237,10 +242,10 @@ function Trans() {
                         description="Are you sure to delete?"
                         onConfirm={() => deleteOneGoal(record.keyword + ':' + record.operation)} okText='Yes' cancelText='No'
                       >
-                        <Button type="primary" danger>Delete</Button>
+                        <Button type="primary" danger style={{fontSize:'12px'}}>Delete</Button>
                       </Popconfirm>
 
-                      <Button style={{marginLeft: '5px',backgroundColor:'green'}} type='primary' onClick={() => editGoal(record)}>Update</Button>
+                      <Button style={{marginLeft: '5px',backgroundColor:'green',fontSize:'12px'}} type='primary' onClick={() => editGoal(record)}>Update</Button>
                     </Fragment>
                   ),
                 }                
