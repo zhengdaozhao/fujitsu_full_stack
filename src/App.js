@@ -20,14 +20,21 @@ function getItem (label, key, icon, children) {
 const iconToElement = (name) =>
     React.createElement(Icon && (Icon)[name], {
         style: { fontSize:'4vw',marginTop:10 },
+        twoToneColor:"#30E3DF",
         color:"#FF8400"
     })
 
-const zpd=[{name:'home',iconName:'HomeTwoTone'},{name:'变换条件管理',iconName:'EditTwoTone'}];
+// const zpd=[{name:'home',iconName:'DiffTwoTone'},{name:'变换条件管理',iconName:'EditTwoTone'}];
+// const zqd = [
+//   getItem('变换', '/home', iconToElement('DiffTwoTone')),
+//   // getItem('Home', '/home', <HomeTwoTone />),
+//   getItem('变换条件管理', '/trans', iconToElement('EditTwoTone')),
+//   // getItem('Exit', '/login', iconToElement('LogoutOutlined'))
+// ];
 const zqd = [
-  getItem('变换', '/home', iconToElement('HomeOutlined')),
+  getItem('Transformation', '/home', iconToElement('DiffTwoTone')),
   // getItem('Home', '/home', <HomeTwoTone />),
-  getItem('变换条件管理', '/trans', iconToElement('EditOutlined')),
+  getItem('Change Management', '/trans', iconToElement('EditTwoTone')),
   // getItem('Exit', '/login', iconToElement('LogoutOutlined'))
 ];
 
@@ -55,6 +62,7 @@ function App() {
           style={{
             float: 'left',
             width: 180,
+            marginRight:40
             // height: 31,
             // margin: '16px 24px 16px 0',
             // background: 'rgba(255, 255, 255, 0.2)',
@@ -68,7 +76,8 @@ function App() {
           items={zqd} 
           onClick={onClick} 
           // style={{background:'#867070',fontSize:20,color:'white'}}
-          style={{background:'#0F6292',fontSize:'2vw',color:'white'}}
+          // style={{background:'#0F6292',fontSize:'2vw',color:'#4F4557'}}
+          style={{background:'#0F6292',fontSize:'2vw',color:'#30E3DF'}}
         />
       </Header>
       <Content

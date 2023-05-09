@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { Button, Space, Form, Input,Spin,notification } from 'antd';
 import api from '../api/axiosConfig'
-// import Counter from './Counter';
 const openNotificationWithIcon = (type, message, description) => notification[type]({message, description});
 
 const { TextArea } = Input;
@@ -14,6 +13,7 @@ function Home() {
     const [form] = Form.useForm();
     const [isFetching,setFetch]=useState(false);
     const [disabledInput, setDisabledInput] = useState(false);
+    
     const changJcl = async () => {
         if (inputname=='' || outputname=='') {
             openNotificationWithIcon('error', 'empty is not allow', `input the folder name to box`);
@@ -79,8 +79,9 @@ function Home() {
                 },
             ]}
         >
-            <Input disabled={disabledInput} placeholder="the INPUT folder name" onChange={e => setInput(e.target.value)} />
+            <Input id='path' disabled={disabledInput} placeholder="the INPUT folder name" onChange={e => setInput(e.target.value)} />
         </Form.Item>
+
     <Form.Item
     //   label="OUTPUT文件夹"
       name="outputname"
@@ -117,12 +118,13 @@ function Home() {
     >
         <TextArea
         showCount
-        maxLength={1000}
+        maxLength={50000}
         style={{
             height: 180,
             marginBottom: 24,
+            resize:'none'
         }}
-        onChange={e => setMessage(e.target.value)}
+        // onChange={e => setMessage(e.target.value)}
         placeholder="the return message will display here"
         disabled={true}
         />

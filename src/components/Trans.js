@@ -3,6 +3,7 @@ import api from '../api/axiosConfig';
 import Container from './Container';
 import moment from 'moment';
 import './Trans.css'
+import Search from './Search';
 
 import {
   Table,
@@ -156,6 +157,21 @@ function Trans() {
         }
     }
 
+    const letSearch = async (request) => {
+      console.log('2rd czpddyz:', request)
+      try
+      {
+          const res = await api.post('/api/goals/search',request);
+          setGoals(res.data);
+      } 
+      catch(err)
+      {
+          console.log(err);
+          openNotificationWithIcon('error', err.response.data[0].keyword, err.response.data[0].operation);
+      };
+    }
+
+
     // search all data
     const getGoals = async () =>{
       try
@@ -251,7 +267,8 @@ function Trans() {
                 }                
             ];
             return (
-                <Container>
+              <Container>
+                  <Search submitter={letSearch} resetter={getGoals}/>
                   <Table  style={{marginBottom:'100px',width:"86%"}}
                             dataSource={goals} 
                             columns={column} 

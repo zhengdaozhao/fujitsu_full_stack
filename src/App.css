@@ -1,3 +1,7 @@
 .content-div {
     height: 98%;
 }
+.ant-menu-item-selected {
+  background-color: #FDFF00 !important;
+  color: red !important;
+}
