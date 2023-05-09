@@ -25,7 +25,7 @@ const AddGoalForm = (props) => (
                 return errors;
               }}
               onSubmit={(values, { setSubmitting }) => {
-                alert(JSON.stringify(values, null, 2));
+                // alert(JSON.stringify(values, null, 2));
                   props.submitter(values);
                   setSubmitting(false);
                 }    

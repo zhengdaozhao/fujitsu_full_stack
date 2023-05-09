@@ -69,6 +69,7 @@ export default class EditGoalForm extends Component {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.author}
+                placeholder="author"
               />
               {errors.author && touched.author && <Tag style={{marginBottom: '5px'}} color="#f50">{errors.author}</Tag>}
 

@@ -5,3 +5,10 @@
   background-color: #FDFF00 !important;
   color: red !important;
 }
+
+.ant-input {
+  &::placeholder {
+    color: #009FBD !important;
+  }
+  color:#9A208C !important;
+}

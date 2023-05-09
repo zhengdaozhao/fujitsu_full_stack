@@ -1,6 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import { Button, Space, Form, Input,Spin,notification } from 'antd';
 import api from '../api/axiosConfig'
+import apip from '../apip/axiosConfigForPython'
+import './Home.css'
+
 const openNotificationWithIcon = (type, message, description) => notification[type]({message, description});
 
 const { TextArea } = Input;
@@ -35,6 +38,34 @@ function Home() {
             catch(err)
             {
                 setFetch(false)
+                setDisabledInput(false)
+                console.log(err);
+            };
+        }
+    }
+    
+    const changJclUsePython = async () => {
+        if (inputname=='' || outputname=='') {
+            openNotificationWithIcon('error', 'empty is not allow', `input the folder name to box`);
+        } else {
+            setback('');
+            // const zparam=inputname + '+' + outputname;
+            request.inputFolder=inputname
+            request.outputFolder=outputname
+            try
+            {
+                setFetch(true);
+                setDisabledInput(true)
+                // const res = await api.get(`/api/goals/trans/${zparam}`);
+                const res = await apip.post('convert_jcl',request);
+                setback(res.data.messages)
+                setFetch(false)
+                setDisabledInput(false)
+            } 
+            catch(err)
+            {
+                setFetch(false)
+                setback(err.messages)
                 setDisabledInput(false)
                 console.log(err);
             };
@@ -95,13 +126,32 @@ function Home() {
     >
       <Input disabled={disabledInput} placeholder="the OUTPUT folder name"  onChange={e => setOutput(e.target.value)}/>
     </Form.Item>
+    <div>
+      <div style={{display: 'inline-block'}}>
+          <Form.Item
+          >
+            <Button type="primary" htmlType="submit" onClick={changJcl} style={{width:'280px',marginRight:'40px'}}>
+              CONVERT (Java)
+            </Button>
+          </Form.Item>
 
-    <Form.Item
-    >
-      <Button type="primary" htmlType="submit" onClick={changJcl} style={{width:'100%'}}>
-        CONVERT
-      </Button>
-    </Form.Item>
+      </div>
+      <div style={{display: 'inline-block'}}>
+        <Form.Item
+        >
+          <Button type="primary" htmlType="submit" onClick={changJclUsePython} style={{width:'280px',backgroundColor:'grey'}}>
+            CONVERT (Python)
+          </Button>
+        </Form.Item>
+
+      </div>
+    </div>
+      {/* <Form.Item
+      >
+        <Button type="primary" htmlType="submit" onClick={changJcl} style={{width:'100%'}}>
+          CONVERT
+        </Button>
+      </Form.Item> */}
     {isFetching ?
          <Space direction="vertical" style={{ width: '100%' }}>
             <Spin tip="the transfrom process is running..." size="large" />
@@ -119,10 +169,11 @@ function Home() {
         <TextArea
         showCount
         maxLength={50000}
+        className='texta'
         style={{
             height: 180,
             marginBottom: 24,
-            resize:'none'
+            resize:'none',
         }}
         // onChange={e => setMessage(e.target.value)}
         placeholder="the return message will display here"
